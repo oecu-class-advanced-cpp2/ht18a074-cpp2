@@ -1,4 +1,5 @@
 #include<iostream>
+#include<math.h>
 
 #define CPP2_PRIME_UPPER_LIMIT 1000000
 
