@@ -4,7 +4,7 @@
 
 int nth_prime(unsigned int a, unsigned int d, unsigned int n) {
 	unsigned int Num;
-	for (unsigned int i = 0; i <= n; i++) {
+	for (unsigned int i = 0; i < n; i++) {
 		//“™·”—ñ
 		Num = a + d*i;
 
