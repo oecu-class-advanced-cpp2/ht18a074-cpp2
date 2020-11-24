@@ -5,32 +5,33 @@
 
 int nth_prime(unsigned int a, unsigned int d, unsigned int n) {
 	unsigned int Num;
-	for (unsigned int i = 0; i < n; i++) {
+	unsigned int count=0;
+	for (unsigned int i = 0; count < n; i++) {
 		//“™·”—ñ
 		Num = a + d*i;
 
 		//‘f””»’è
 		if (Num < 2) {
-			n = n + 1;
+		    //‘f”ˆá‚¤
 		}
 		else if (Num == 2) {
-			n = n + 1;
+		    //‘f”ˆá‚¤
 		}
 		else if (Num % 2 == 0) {
-			n = n + 1;
+		    //‘f”ˆá‚¤
 		}
-		//‘f”ˆá‚¤
-
 		else {
 			double sqrtNum = sqrt(Num);
 			for (int j = 3; j <= sqrtNum; j += 2) {
 				if (Num%j == 0) {
 					//‘f”ˆá‚¤
-					n = n + 1;
+					goto Notsosu;
 				}
 			}
 			//‘f”‚Å‚ ‚é
+			count++;
 		}
+		Notsosu:;
 	}
 
 	return Num;
@@ -51,3 +52,5 @@ int main() {
 	std::cout << nth_prime(269, 58, 102) << std::endl;
 	return 0;
 }
+
+
