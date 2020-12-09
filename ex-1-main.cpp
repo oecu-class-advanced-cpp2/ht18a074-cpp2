@@ -102,9 +102,10 @@ int nth_prime(unsigned int a, unsigned int d, unsigned int n) {
 		//‘f””»’è
 		if (Num < 2) {
 		    //‘f”ˆá‚¤
-		}
-		else if (Num == 2) {
-		    //‘f”ˆá‚¤
+		    if(n<2){
+		        Num+=1;
+		        count++;
+		    }
 		}
 		else if (Num % 2 == 0) {
 		    //‘f”ˆá‚¤
@@ -153,5 +154,3 @@ int main() {
 	comp(Num,12);
 	return 0;
 }
-
-
