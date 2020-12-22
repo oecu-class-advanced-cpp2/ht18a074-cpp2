@@ -1,6 +1,7 @@
 // ex_2_main_cpp.cpp
 #include <iostream>
 #include <string>
+#include<algorithm>
 
 namespace cpp2 {
 	/* --------------------------------------------------------------------- */
@@ -27,23 +28,32 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		mcxi(const std::string& s) : value_(0) {
-			int value = 0;
-			for (auto pos = s.begin(); pos != s.end(); pos++) {
-				if (s=="2", "3", "4", "5", "6", "7", "8", "9") {
-					value += std::atoi(s.c_str);
+			int disit = 0;
+			for (auto pos = s.begin(); pos != s.end(); ++pos) {
+				if (*pos>='2'&&*pos<='9') {
+					disit += *pos-'0';
 				}
-				else if (s == "m") {
-					value += 1000;
+				else {
+					auto u = unit(*pos);
+					value_ += std::max(disit, 1)*u;
+					disit = 0;
 				}
-				else if (s == "c") {
-					value += 100;
-				}
-				else if (s == "x") {
-					value += 10;
-				}
-				else if (s == "i") {
-					value += 1;
-				}
+			}
+		}
+
+		int unit(char c) {
+			switch(c) {
+			case 'm':
+				return 1000;
+				break;
+			case 'c':
+				return 100;
+				break;
+			case 'x':
+				return 10;
+				break;
+			case 'i':
+				return 1;
 			}
 		}
 
@@ -56,7 +66,6 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		mcxi operator+(const mcxi& rhs) {
-
 		}
 
 		/* ----------------------------------------------------------------- */
@@ -67,7 +76,7 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		std::string to_string() const {
-
+			
 		}
 
 
