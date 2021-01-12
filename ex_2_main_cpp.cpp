@@ -41,23 +41,6 @@ namespace cpp2 {
 			}
 		}
 
-		int unit(char c) {
-			switch(c) {
-			case 'm':
-				return 1000;
-				break;
-			case 'c':
-				return 100;
-				break;
-			case 'x':
-				return 10;
-				break;
-			case 'i':
-				return 1;
-			}
-		}
-
-
 		/* ----------------------------------------------------------------- */
 		/*
 		operator+
@@ -66,6 +49,10 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		mcxi operator+(const mcxi& rhs) {
+			auto res = this->value_ + rhs.value_;
+			cpp2::mcxi x("");
+			x.value_ = res;
+			return x;
 		}
 
 		/* ----------------------------------------------------------------- */
@@ -79,6 +66,22 @@ namespace cpp2 {
 			
 		}
 
+	private:
+		int unit(char c) {
+			switch (c) {
+			case 'm':
+				return 1000;
+				break;
+			case 'c':
+				return 100;
+				break;
+			case 'x':
+				return 10;
+				break;
+			case 'i':
+				return 1;
+			}
+		}
 
 	private:
 		int value_;
