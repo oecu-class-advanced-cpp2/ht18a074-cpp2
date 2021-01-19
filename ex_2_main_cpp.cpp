@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include<algorithm>
+#include<sstream>
 
 namespace cpp2 {
 	/* --------------------------------------------------------------------- */
@@ -49,10 +50,9 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		mcxi operator+(const mcxi& rhs) {
-			auto res = this->value_ + rhs.value_;
-			cpp2::mcxi x("");
-			x.value_ = res;
-			return x;
+			mcxi dest(*this);
+			dest.value_ += rhs.value_;
+			return dest;
 		}
 
 		/* ----------------------------------------------------------------- */
@@ -63,7 +63,44 @@ namespace cpp2 {
 		*/
 		/* ----------------------------------------------------------------- */
 		std::string to_string() const {
-			
+			std::stringstream ss;
+
+			int m = value_ / 1000;
+			if (m == 1) {
+				ss << 'm';
+			}
+			if (m > 1) {
+				ss << m;
+				ss << 'm';
+			}
+
+			int c = (value_ - m * 1000) / 100;
+			if (c == 1) {
+				ss << 'c';
+			}
+			if (c > 1) {
+				ss << c;
+				ss << 'c';
+			}
+
+			int x = (value_ - c * 100) / 10;
+			if (x == 1) {
+				ss << 'x';
+			}
+			if (x > 1) {
+				ss << x;
+				ss << 'x';
+			}
+
+			int i = (value_ - x * 10) / 10;
+			if (i == 1) {
+				ss << 'i';
+			}
+			if (i > 1) {
+				ss << i;
+				ss << 'i';
+			}
+			return ss.str();
 		}
 
 	private:
@@ -71,14 +108,13 @@ namespace cpp2 {
 			switch (c) {
 			case 'm':
 				return 1000;
-				break;
 			case 'c':
 				return 100;
-				break;
 			case 'x':
 				return 10;
-				break;
 			case 'i':
+				return 1;
+			default:
 				return 1;
 			}
 		}
@@ -138,4 +174,6 @@ int main() {
 	cpp2::mcxi b9("c2x8i");
 	auto result9 = a9 + b9;
 	std::cout << "9m9c9x9i" << " " << result9.to_string() << std::endl;
+
+	std::cin.get();
 }
