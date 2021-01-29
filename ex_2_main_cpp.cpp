@@ -83,7 +83,7 @@ namespace cpp2 {
 				ss << 'c';
 			}
 
-			int x = (value_ - c * 100) / 10;
+			int x = (value_ - m * 1000 - c * 100) / 10;
 			if (x == 1) {
 				ss << 'x';
 			}
@@ -92,7 +92,7 @@ namespace cpp2 {
 				ss << 'x';
 			}
 
-			int i = (value_ - x * 10) / 10;
+			int i = (value_ - m * 1000 - c * 100 - x * 10);
 			if (i == 1) {
 				ss << 'i';
 			}
